@@ -33,14 +33,28 @@ class ToDoItem extends StatelessWidget {
           todo.isDone ? Icons.check_box : Icons.check_box_outline_blank,
           color: tdBlue,
         ),
-        title: Text(
-          todo.todoText ?? '',
-          style: TextStyle(
-            fontSize: 16,
-            color: tdBlack,
-            decoration:
-                todo.isDone ? TextDecoration.lineThrough : TextDecoration.none,
-          ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              todo.todoText ?? '',
+              style: TextStyle(
+                fontSize: 16,
+                color: tdBlack,
+                decoration: todo.isDone
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              todo.date ?? '',
+              style: const TextStyle(
+                fontSize: 12,
+                color: tdGrey,
+              ),
+            ),
+          ],
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,

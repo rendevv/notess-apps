@@ -136,23 +136,24 @@ class _HomeState extends State<Home> {
   }
 
   void _addToDoItem(String toDo) {
-    if (toDo.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('ToDo cannot be empty!')),
-      );
-      return;
-    }
-
-    setState(() {
-      todosList.add(ToDo(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        todoText: toDo,
-      ));
-      _foundToDo = todosList;
-    });
-    _todoController.clear();
-    _saveToDos();
+  if (toDo.trim().isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('ToDo cannot be empty!')),
+    );
+    return;
   }
+
+  setState(() {
+    todosList.add(ToDo(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      todoText: toDo,
+      date: DateTime.now().toString().substring(0, 10), // Format: YYYY-MM-DD
+    ));
+    _foundToDo = todosList;
+  });
+  _todoController.clear();
+  _saveToDos();
+}
 
   void _editToDoItem(ToDo todo) {
     final TextEditingController _editController =
